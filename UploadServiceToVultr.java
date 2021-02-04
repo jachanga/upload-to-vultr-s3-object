@@ -1,4 +1,4 @@
-package com.mytest.app.vultr.upload;
+package com.jachanga.app.vultr.upload;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

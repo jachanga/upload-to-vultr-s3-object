@@ -1,13 +1,13 @@
 # upload-to-vultr-s3-object
 Spring Boot S3 upload to vultr S3 Object
 
-Change the endpoint with this code
+Only change the EndpointConfiguration
 
 	EndpointConfiguration endpointConfiguration = new EndpointConfiguration("ewr1.vultrobjects.com", clientRegion);
 	s3ClientBuilder.setEndpointConfiguration(endpointConfiguration );
 
 
-# Simple spring describe upload to vultr s3 bucket
+# Simple spring boot code describe upload to vultr s3 bucket
 
 	public String uploadFile(MultipartFile file) throws IOException, InvalidFileFormatException,
 				InvalidFileSizeException, AmazonServiceException, SdkClientException {
@@ -38,7 +38,7 @@ Change the endpoint with this code
 	}
 
 
-# Imports
+# Dependency
 
 	<dependency>
 	    <groupId>com.amazonaws</groupId>

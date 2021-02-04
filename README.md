@@ -9,7 +9,7 @@ Change the endpoint with this code
 
 # Simple spring describe upload to vultr s3 bucket
 ```
-public String uploadImage(MultipartFile file) throws IOException, InvalidFileFormatException,
+public String uploadFile(MultipartFile file) throws IOException, InvalidFileFormatException,
 			InvalidFileSizeException, AmazonServiceException, SdkClientException {
 
 	byte[] bytes = file.getBytes();

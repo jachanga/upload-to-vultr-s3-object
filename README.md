@@ -37,3 +37,11 @@ public String uploadFile(MultipartFile file) throws IOException, InvalidFileForm
 
 }
 ```
+
+# Imports
+
+	<dependency>
+	    <groupId>com.amazonaws</groupId>
+	    <artifactId>aws-java-sdk-s3</artifactId>
+	    <version>1.11.343</version>
+	</dependency>

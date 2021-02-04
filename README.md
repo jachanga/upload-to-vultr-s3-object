@@ -8,35 +8,35 @@ Change the endpoint with this code
 
 
 # Simple spring describe upload to vultr s3 bucket
-```
-public String uploadFile(MultipartFile file) throws IOException, InvalidFileFormatException,
-			InvalidFileSizeException, AmazonServiceException, SdkClientException {
 
-	byte[] bytes = file.getBytes();
-	String fileObjKeyName = file.getOriginalFilename();
-	BasicAWSCredentials awsCreds = new BasicAWSCredentials(accessKey, secretKey);
-	AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
-			.withEndpointConfiguration(new EndpointConfiguration("ewr1.vultrobjects.com", null))
-			.withCredentials(new AWSStaticCredentialsProvider(awsCreds)).build();
+	public String uploadFile(MultipartFile file) throws IOException, InvalidFileFormatException,
+				InvalidFileSizeException, AmazonServiceException, SdkClientException {
 
-	ObjectMetadata metadata = new ObjectMetadata();
-	metadata.setContentType(file.getContentType());
-	// metadata.addUserMetadata("x-amz-meta-title", "someTitle");
-	metadata.setContentLength(file.getSize());
+		byte[] bytes = file.getBytes();
+		String fileObjKeyName = file.getOriginalFilename();
+		BasicAWSCredentials awsCreds = new BasicAWSCredentials(accessKey, secretKey);
+		AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
+				.withEndpointConfiguration(new EndpointConfiguration("ewr1.vultrobjects.com", null))
+				.withCredentials(new AWSStaticCredentialsProvider(awsCreds)).build();
 
-	InputStream inputStream = new ByteArrayInputStream(bytes);
-	PutObjectRequest request = new PutObjectRequest(bucketName, fileObjKeyName, inputStream, metadata);
+		ObjectMetadata metadata = new ObjectMetadata();
+		metadata.setContentType(file.getContentType());
+		// metadata.addUserMetadata("x-amz-meta-title", "someTitle");
+		metadata.setContentLength(file.getSize());
 
-	AccessControlList accessControlList = new AccessControlList();
-	accessControlList.grantPermission(GroupGrantee.AllUsers, Permission.Read);
-	request.setAccessControlList(accessControlList);
+		InputStream inputStream = new ByteArrayInputStream(bytes);
+		PutObjectRequest request = new PutObjectRequest(bucketName, fileObjKeyName, inputStream, metadata);
 
-	s3Client.putObject(request);
+		AccessControlList accessControlList = new AccessControlList();
+		accessControlList.grantPermission(GroupGrantee.AllUsers, Permission.Read);
+		request.setAccessControlList(accessControlList);
 
-	return "https://ewr1.vultrobjects.com/" + bucketName + "/" + fileObjKeyName;
+		s3Client.putObject(request);
 
-}
-```
+		return "https://ewr1.vultrobjects.com/" + bucketName + "/" + fileObjKeyName;
+
+	}
+
 
 # Imports
 
